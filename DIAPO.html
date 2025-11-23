@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLA - Contrat de Niveau de Service</title>
+    <!-- Chargement de Tailwind CSS pour un style moderne et professionnel -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuration de la police Inter (standard professionnel) et du fond */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Gris très clair */
+            overflow: hidden; /* Empêche le défilement de la page */
+        }
+        /* Style des diapositives pour la transition */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transition douce */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+        }
+        /* Conteneur principal pour la translation horizontale */
+        .slides-container {
+            display: flex;
+            width: 600vw; /* 6 diapositives * 100vw (ancienne valeur 500vw) */
+        }
+        /* Style des flèches de navigation */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.7); /* Gris foncé semi-transparent */
+            color: white;
+            padding: 1rem 0.75rem;
+            cursor: pointer;
+            transition: background 0.3s, opacity 0.3s;
+            border-radius: 0.5rem;
+        }
+        .nav-arrow:hover:not([disabled]) {
+            background: rgba(15, 23, 42, 0.9);
+        }
+        .nav-arrow:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Style spécifique pour la diapo d'exemples */
+        .example-card {
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            height: 100%; /* Important pour que le grid-item prenne toute la hauteur */
+        }
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Conteneur des diapositives -->
+    <div id="slidesContainer" class="slides-container">
+
+        <!-- DIAPOSITIVE 1 : TITRE ET AUTEURS -->
+        <div class="slide bg-gray-900 text-white">
+            <div class="text-center space-y-12">
+                <h1 class="text-9xl font-extrabold tracking-tight" style="letter-spacing: 0.2em;">SLA</h1>
+                <h2 class="text-3xl font-light opacity-80">SERVICE LEVEL AGREEMENT</h2>
+                <h3 class="text-xl font-medium tracking-wider uppercase pt-10">Contrat de Niveau de Service</h3>
+                <div class="mt-20 text-lg opacity-60">
+                    Présenté par:
+                    <p class="mt-2 text-2xl font-semibold">JUERY Lucas</p>
+                    <p class="text-2xl font-semibold">SROUR Ali</p>
+                    <p class="text-2xl font-semibold">OUHICHI Mohamed-Aziz</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVE 2 : INTRODUCTION ET PLAN -->
+        <div class="slide bg-white text-gray-800">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-bold text-indigo-700 mb-12 border-b-4 border-indigo-200 pb-4">1. Introduction & Plan</h2>
+                <div class="grid grid-cols-2 gap-12">
+                    <!-- Contexte -->
+                    <div class="space-y-6">
+                        <h3 class="text-3xl font-semibold text-gray-900">Le Contexte</h3>
+                        <ul class="list-none space-y-3 text-xl pl-0 font-medium">
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-3 text-2xl">•</span> Enjeu : Garantir la performance et la fiabilité.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-3 text-2xl">•</span> Définition : Accord contractuel de qualité.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-3 text-2xl">•</span> Rôle : Sécuriser la prestation du fournisseur.
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Problématique et Plan -->
+                    <div class="space-y-6">
+                        <h3 class="text-3xl font-semibold text-gray-900">La Problématique</h3>
+                        <p class="text-2xl italic font-light text-gray-700">
+                            "Comment garantir la qualité et maîtriser les risques et coûts de service ?"
+                        </p>
+                        <h3 class="text-3xl font-semibold text-gray-900 mt-8">Le Plan</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-xl font-medium text-gray-700">
+                            <li>Fondamentaux : Le Périmètre contractuel.</li>
+                            <li>Mesure : Performance et Conséquences.</li>
+                            <li>Exemples Concrets.
+                            </li>
+                            <li>Conclusion et Bonnes Pratiques.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVE 3 : PÉRIMÈTRE ET ENJEUX -->
+        <div class="slide bg-gray-50 text-gray-800">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-bold text-indigo-700 mb-12 border-b-4 border-indigo-200 pb-4">2. Les Fondamentaux du Contrat</h2>
+                <div class="grid grid-cols-3 gap-10 text-center">
+                    <!-- Colonne 1 : Périmètre -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-indigo-500">
+                        <span class="text-6xl text-indigo-500 mb-4 inline-block">📋</span>
+                        <h3 class="text-2xl font-extrabold mb-4 uppercase tracking-wider">Le Périmètre</h3>
+                        <ul class="list-none space-y-2 text-lg font-medium">
+                            <li class="text-gray-600 font-bold">Services couverts (Quoi ?)</li>
+                            <li>Rôles et Responsabilités (Qui ?)</li>
+                            <li>Exclusions explicites.</li>
+                            <li>Types d'accords (SLA, OLA, UC).</li>
+                        </ul>
+                        <p class="mt-4 text-sm italic text-gray-500">
+                            Exemple: Un SLA peut couvrir la base de données mais exclure les machines des utilisateurs finaux.
+                        </p>
+                    </div>
+                    <!-- Colonne 2 : Exigences -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-indigo-500">
+                        <span class="text-6xl text-indigo-500 mb-4 inline-block">🤝</span>
+                        <h3 class="text-2xl font-extrabold mb-4 uppercase tracking-wider">Les Exigences</h3>
+                        <ul class="list-none space-y-2 text-lg font-medium">
+                            <li class="text-gray-600 font-bold">Alignement : IT / Métier.</li>
+                            <li>Négociation des attentes.</li>
+                            <li>Réalisme des objectifs.</li>
+                            <li>Clarté de la documentation.</li>
+                        </ul>
+                        <p class="mt-4 text-sm italic text-gray-500">
+                            Exemple: L'IT doit garantir un service 24/7 si le métier est un e-commerce global.
+                        </p>
+                    </div>
+                    <!-- Colonne 3 : Enjeux -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-indigo-500">
+                        <span class="text-6xl text-indigo-500 mb-4 inline-block">⚖️</span>
+                        <h3 class="text-2xl font-extrabold mb-4 uppercase tracking-wider">Enjeux Juridiques</h3>
+                        <ul class="list-none space-y-2 text-lg font-medium">
+                            <li class="text-gray-600 font-bold">Base légale du service.</li>
+                            <li>Protection du client.</li>
+                            <li>Clarification des recours.</li>
+                            <li>Maîtrise de la dépendance.</li>
+                        </ul>
+                        <p class="mt-4 text-sm italic text-gray-500">
+                            Exemple: La rupture de service peut entraîner des pertes financières directes et justifier des pénalités.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVE 4 : MESURE ET RISQUES -->
+        <div class="slide bg-white text-gray-800">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-bold text-indigo-700 mb-12 border-b-4 border-indigo-200 pb-4">3. Mesure de la Performance & Risques</h2>
+                <div class="grid grid-cols-2 gap-12">
+                    <!-- KPIs -->
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-6 text-gray-900">Les Indicateurs Clés (KPIs)</h3>
+                        <ul class="list-none space-y-4 text-xl pl-0 font-medium">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-3 text-2xl">✅</span> Disponibilité : Taux d'accessibilité du service (en %).
+                                <span class="text-sm text-gray-500 ml-2">(Ex: 99.9% = max 8h45 de panne/an)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-3 text-2xl">✅</span> MTTR : Temps Moyen de Résolution des Incidents.
+                                <span class="text-sm text-gray-500 ml-2">(Ex: Résolution en 4 heures maximum)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-3 text-2xl">✅</span> Temps de Réponse : Réactivité du support.
+                                <span class="text-sm text-gray-500 ml-2">(Ex: Prise en charge initiale en 15 minutes)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-3 text-2xl">✅</span> Critères : Les indicateurs doivent être SMART.
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Conséquences -->
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-6 text-gray-900">Conséquences et Sanctions</h3>
+                        <ul class="list-none space-y-4 text-xl pl-0 font-medium">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3 text-2xl">🚨</span> Manquement : Non-respect du seuil de performance.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3 text-2xl">🚨</span> Pénalités : Crédits de service (réduction de facture).
+                                <span class="text-sm text-gray-500 ml-2">(Ex: 5% de réduction si Disponibilité < 99.5%)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3 text-2xl">🚨</span> Reporting : Transparence de la mesure et de la faute.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3 text-2xl">🚨</span> Risque : Dommages réputationnels et indirects.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVE 5 : EXEMPLES CONCRETS (NOUVELLE DIAPO) -->
+        <div class="slide bg-gray-100 text-gray-800">
+            <div class="max-w-6xl w-full h-full flex flex-col justify-center">
+                <h2 class="text-5xl font-bold text-indigo-700 mb-12 border-b-4 border-indigo-200 pb-4">4. Études de Cas & Exemples Concrets</h2>
+                <div class="grid grid-cols-3 gap-8 h-3/4">
+
+                    <!-- Exemple 1 : Cloud (Disponibilité) -->
+                    <div class="example-card">
+                        <span class="text-4xl text-blue-500 mb-4 inline-block">☁️</span>
+                        <h3 class="text-xl font-extrabold mb-3 uppercase">Hébergeur Cloud</h3>
+                        <p class="text-lg text-gray-600 mb-4">
+                            Un fournisseur cloud (AWS, Azure) promet une Disponibilité de 99.99% pour sa base de données.
+                        </p>
+                        <p class="text-sm font-semibold text-indigo-600">
+                            Manquement: La base tombe en panne 1h dans le mois.
+                        </p>
+                        <p class="text-sm mt-2 italic text-red-600">
+                            Conséquence: Le client reçoit un crédit de service équivalent à 10% de sa facture mensuelle.
+                        </p>
+                    </div>
+
+                    <!-- Exemple 2 : Support Technique (MTTR) -->
+                    <div class="example-card">
+                        <span class="text-4xl text-green-500 mb-4 inline-block">📞</span>
+                        <h3 class="text-xl font-extrabold mb-3 uppercase">Support Helpdesk</h3>
+                        <p class="text-lg text-gray-600 mb-4">
+                            Le SLA exige que les tickets "Critiques" (blocage complet) aient un MTTR (Mean Time To Resolve) < 2 heures.
+                        </p>
+                        <p class="text-sm font-semibold text-indigo-600">
+                            Manquement: Un blocage est résolu après 5 heures.
+                        </p>
+                        <p class="text-sm mt-2 italic text-red-600">
+                            Conséquence: L'incident est classé comme un manquement aux objectifs et fait l'objet d'un rapport de non-conformité.
+                        </p>
+                    </div>
+
+                    <!-- Exemple 3 : Opérateur Télécom (Latence) -->
+                    <div class="example-card">
+                        <span class="text-4xl text-yellow-500 mb-4 inline-block">🚀</span>
+                        <h3 class="text-xl font-extrabold mb-3 uppercase">Liaison Réseau</h3>
+                        <p class="text-lg text-gray-600 mb-4">
+                            Un opérateur télécom garantit une Latence maximale de 20 ms sur la fibre optique entre deux sites critiques.
+                        </p>
+                        <p class="text-sm font-semibold text-indigo-600">
+                            Manquement: Durant 48 heures, la latence moyenne est de 45 ms.
+                        </p>
+                        <p class="text-sm mt-2 italic text-red-600">
+                            Conséquence: Les clauses de garantie de niveau de service (GNS) s'activent, et une partie du coût de la liaison est remboursée.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVE 6 : CONCLUSION (Ancienne diapo 5) -->
+        <div class="slide bg-gray-900 text-white">
+            <div class="max-w-4xl w-full text-center space-y-12">
+                <h2 class="text-5xl font-bold text-indigo-400 mb-8 border-b-4 border-indigo-400/50 pb-4">5. Conclusion & Perspectives</h2>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-extrabold tracking-wide uppercase">Le SLA : Un Outil de Pilotage</h3>
+                    <p class="text-xl font-light opacity-80 max-w-2xl mx-auto">
+                        Le Contrat de Niveau de Service assure la confiance et la qualité en transformant les attentes subjectives en *objectifs mesurables*.
+                    </p>
+                </div>
+                <div class="space-y-6 pt-8">
+                    <h3 class="text-3xl font-extrabold tracking-wide uppercase text-indigo-400">Bonnes Pratiques</h3>
+                    <div class="flex justify-center space-x-12 text-2xl">
+                        <div class="font-bold">ITIL</div>
+                        <div class="text-gray-400 font-light">Gestion du Niveau de Service</div>
+                    </div>
+                </div>
+                <div class="pt-12 text-2xl">
+                    <p class="font-light">Merci de votre attention.</p>
+                    <p class="font-extrabold text-indigo-400 mt-2">Questions / Réponses</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Flèches de Navigation -->
+    <button id="prevBtn" class="nav-arrow left-4">&lt;</button>
+    <button id="nextBtn" class="nav-arrow right-4">&gt;</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('slidesContainer');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+
+            // La largeur du conteneur est maintenant 600vw (6 slides)
+            container.style.width = `${totalSlides * 100}vw`;
+
+            // Fonction pour mettre à jour la vue (translation)
+            function updateSlide(index) {
+                // S'assurer que l'index est dans les limites
+                if (index < 0 || index >= totalSlides) {
+                    return;
+                }
+                currentSlide = index;
+                // Calcule la valeur de translation (en pourcentages de la largeur de la diapo)
+                const offset = -currentSlide * 100;
+                container.style.transform = `translateX(${offset}vw)`;
+
+                // Mise à jour de l'état des boutons (désactivé si au début/fin)
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+
+            // Navigation au clic sur la flèche droite
+            nextBtn.addEventListener('click', () => {
+                updateSlide(currentSlide + 1);
+            });
+
+            // Navigation au clic sur la flèche gauche
+            prevBtn.addEventListener('click', () => {
+                updateSlide(currentSlide - 1);
+            });
+
+            // Navigation au clavier (flèches droite/gauche)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    updateSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    updateSlide(currentSlide - 1);
+                }
+            });
+
+            // Initialisation au chargement
+            updateSlide(0);
+        });
+    </script>
+
+</body>
+</html>
